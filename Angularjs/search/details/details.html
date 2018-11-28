@@ -1,0 +1,268 @@
+﻿<h1 class="page-header">
+    Enrollment ID: {{ctrl.enrollment.Id}}
+    <span class="label label-primary">{{ctrl.enrollment.Status | underscoreless}}</span>
+</h1>
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="panel-title">Product Information</h2>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Promotion</th>
+                        <th>Product</th>
+                        <th>TDU</th>
+                        <th>Term</th>
+                        <th>Price @ 500 kWh</th>
+                        <th>Price @ 1000 kWh</th>
+                        <th>Price @ 2000 kWh</th>
+                        <th>Rate Code</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ctrl.enrollment.Offer.Promotion.Name || 'N/A'}}</td>
+                        <td>{{ctrl.enrollment.Offer.Plan.Product.Name}}</td>
+                        <td>{{ctrl.enrollment.Offer.Plan.TDU.Name}}</td>
+                        <td>{{ctrl.enrollment.Offer.Plan.Term}} months</td>
+                        <td>{{ctrl.enrollment.Offer.Price_At_500_kwh | currency : $ : 5}}</td>
+                        <td>{{ctrl.enrollment.Offer.Price_At_1000_kwh | currency : $ : 5}}</td>
+                        <td>{{ctrl.enrollment.Offer.Price_At_2000_kwh | currency : $ : 5}}</td>
+                        <td>{{ctrl.enrollment.Offer.Rate_Code}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="panel-title">Additional Service</h2>
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ctrl.enrollment.Is_Additional_Service?'Yes':'No'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="panel-title">Service Location Information</h2>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>UAN</th>
+                        <th>Address Line 1</th>
+                        <th>Address Line 2</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Zip</th>
+                        <th>Meter Status</th>
+                        <th>Meter Type</th>
+                        <th>Premise Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ctrl.enrollment.Request.UAN || 'N/A'}}</td>
+                        <td>{{ctrl.enrollment.Service_Location.Address.Line1}}</td>
+                        <td>{{ctrl.enrollment.Service_Location.Address.Line2}}</td>
+                        <td>{{ctrl.enrollment.Service_Location.Address.City}}</td>
+                        <td>{{ctrl.enrollment.Service_Location.Address.State}}</td>
+                        <td>{{ctrl.enrollment.Service_Location.Address.Zip}}</td>
+                        <td>{{ctrl.enrollment.Service_Location.Meter_Info.Meter_Status}}</td>
+                        <td>{{ctrl.enrollment.Service_Location.Meter_Info.Meter_Type}}</td>
+                        <td>{{ctrl.enrollment.Service_Location.Meter_Info.Premise_Type}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="panel-title">Enrollment Request Information</h2>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Channel</th>
+                        <th>Date Submitted</th>
+                        <th>Requested Start Date</th>
+                        <th>Service Type</th>
+                        <th>Deposit Waiver</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ctrl.enrollment.Channel.Name || 'N/A'}}</td>
+                        <td>{{ctrl.enrollment.Date_Created | date : 'MMM dd, yyyy @ hh:mm a'}}</td>
+                        <td>{{ctrl.enrollment.Request.Selected_Start_Date | date}}</td>
+                        <td>{{ctrl.enrollment.Request.Service_Type}}</td>
+                        <td>{{ctrl.enrollment.Request.Waiver | underscoreless}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="panel-title">Billing Address Information</h2>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Billing Address Line 1</th>
+                        <th>Billing Address Line 2</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Zip</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ctrl.enrollment.Request.Billing_Address.Line1}}</td>
+                        <td>{{ctrl.enrollment.Request.Billing_Address.Line2}}</td>
+                        <td>{{ctrl.enrollment.Request.Billing_Address.City}}</td>
+                        <td>{{ctrl.enrollment.Request.Billing_Address.State}}</td>
+                        <td>{{ctrl.enrollment.Request.Billing_Address.Zip}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="panel-title">Customer Information</h2>
+            </div>
+            <table class="table table-striped table-condensed">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Status</th>
+                        <th>Social</th>
+                        <th>Drivers License</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ctrl.enrollment.Customer_Check_Record.Request.First_Name || 'N/A'}}</td>
+                        <td>{{ctrl.enrollment.Customer_Check_Record.Request.Last_Name || 'N/A'}}</td>
+                        <td>{{ctrl.enrollment.Customer_Check_Record.Customer_Check_Status}}</td>
+                        <td>{{ctrl.enrollment.Customer_Check_Record.Request.Social_Security_Number}}</td>
+                        <td>{{ctrl.enrollment.Customer_Check_Record.Request.Drivers_License.Number}} {{ctrl.enrollment.Customer_Check_Record.Request.Drivers_License.State}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="panel-title">Billing Account Information</h2>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Deposit Amount</th>
+                        <th>Billing System Response</th>
+                        <th>Outstanding Balance?</th>
+                        <th>Bad Payment History?</th>
+                        <th>Years since was customer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ctrl.enrollment.Customer_Check_Record.Response.Enrollment_Deposit_Amount | currency}}</td>
+                        <td>{{ctrl.enrollment.Customer_Check_Record.Response.Billing_System_Check_Response.Type}}</td>
+                        <td>{{ctrl.enrollment.Customer_Check_Record.Response.Billing_System_Check_Response.Has_Outstanding_Balance || 'No'}}</td>
+                        <td>{{ctrl.enrollment.Customer_Check_Record.Response.Billing_System_Check_Response.Has_Bad_Payment_History || 'No'}}</td>
+                        <td>{{ctrl.enrollment.Customer_Check_Record.Response.Billing_System_Check_Response.Years_Since_Was_Customer || 'N/A'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="panel-title">Contact Information</h2>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Primary Phone</th>
+                        <th>Primary Phone Type</th>
+                        <th>Agree To Marketing</th>
+                        <th>Secondary Phone</th>
+                        <th>Secondary Phone Type</th>
+                        <th>Agree To Marketing</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ctrl.enrollment.Request.Contact_Info.Email_Address}}</td>
+                        <td>{{ctrl.enrollment.Request.Contact_Info.Primary_Phone_Number.Area_Code + '-' + ctrl.enrollment.Request.Contact_Info.Primary_Phone_Number.Number}}</td>
+                        <td>{{ctrl.enrollment.Request.Contact_Info.Primary_Phone_Number.Type}}</td>
+                        <td>{{ctrl.enrollment.Request.Contact_Info.Primary_Phone_Number.Agree_To_Marketing}}</td>
+                        <td>{{ctrl.enrollment.Request.Contact_Info.Secondary_Phone_Number.Area_Code + '-' + ctrl.enrollment.Request.Contact_Info.Secondary_Phone_Number.Number}}</td>
+                        <td>{{ctrl.enrollment.Request.Contact_Info.Secondary_Phone_Number.Type}}</td>
+                        <td>{{ctrl.enrollment.Request.Contact_Info.Secondary_Phone_Number.Agree_To_Marketing}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="panel-title">Customer Service Account Information</h2>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Entity Id</th>
+                        <th>Contract Service Point Id</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ctrl.enrollment.Customer_Account_Id}}</td>
+                        <td>{{ctrl.enrollment.Service_Account_Id}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="col-md-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="panel-title">Enrollment Notes</h2>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="note in ctrl.enrollment.Notes | orderBy: '-Date_Entered' track by $index">
+                    <p title="{{note.Content}}" style="width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{note.Content}}</p>
+                    <small><strong>{{note.Entered_By}}</strong> on <i>{{note.Date_Entered | date : 'MMM dd, yyyy h:mm a'}}</i></small>
+                </li>
+            </ul>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="panel-title">Customer Check Notes</h2>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="note in ctrl.enrollment.Customer_Check_Record.Notes | orderBy: '-Date_Entered' track by $index">
+                    <p title="{{note.Content}}" style="width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{note.Content}}</p>
+                    <small><strong>{{note.Entered_By}}</strong> on <i>{{note.Date_Entered | date : 'MMM dd, yyyy h:mm a'}}</i></small>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

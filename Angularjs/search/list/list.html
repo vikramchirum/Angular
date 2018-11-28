@@ -1,0 +1,170 @@
+﻿<div class="row">
+    <div class="col-xs-12">
+        <h1>
+            Search
+        </h1>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Filters</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <label>Start Date</label>
+                        <p class="input-group">
+                            <input type="text" uib-datepicker-popup="MM/dd/yyyy" ng-model="ctrl.option.Search_Options.Date_Enrollment_Received_Start" is-open="ctrl.startOpened" class="form-control" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary" ng-click="ctrl.startOpened = true">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-md-2">
+                        <label>End Date</label>
+                        <p class="input-group">
+                            <input type="text" uib-datepicker-popup="MM/dd/yyyy" ng-model="ctrl.option.Search_Options.Date_Enrollment_Received_End" is-open="ctrl.endOpened" class="form-control" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary" ng-click="ctrl.endOpened = true">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Enrollment Id</label>
+                        <input class="form-control" ng-model="ctrl.option.Search_Options.Id" />
+                    </div>
+                    <div class="col-md-2">
+                        <label>Channel</label>
+                        <select class="form-control" ng-model="ctrl.option.Search_Options.Channel_Id" ng-options="item.Id as item.Name for item in ctrl.channels" >
+                            <option value="">Any</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Status</label>
+                        <select class="form-control" ng-model="ctrl.option.Search_Options.Status" ng-options="item.Id as item.Name for item in ctrl.status_list" >
+                            <option value="">Any</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <label>Service Account Number</label>
+                        <input class="form-control" ng-model="ctrl.option.Search_Options.Service_Account_Id" />
+                    </div>
+                    <div class="col-md-2">
+                        <label>Promotion Name</label>
+                        <input class="form-control" ng-model="ctrl.option.Search_Options.Promotion_Name" />
+                    </div>
+                    <div class="col-md-2">
+                        <label>Product Name</label>
+                        <input class="form-control" ng-model="ctrl.option.Search_Options.Product_Name" />
+                    </div>
+                    <div class="col-md-2">
+                        <label>TDU Name</label>
+                        <input class="form-control" ng-model="ctrl.option.Search_Options.TDU_Name" />
+                    </div>
+                    <div class="col-md-1">
+                        <label>Term</label>
+                        <input class="form-control" ng-model="ctrl.option.Search_Options.Term" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <label>First Name</label>
+                        <input class="form-control" ng-model="ctrl.option.Search_Options.First_Name" />
+                    </div>
+                    <div class="col-md-2">
+                        <label>Last Name</label>
+                        <input class="form-control" ng-model="ctrl.option.Search_Options.Last_Name" />
+                    </div>
+                    <div class="col-md-2">
+                        <label>UAN / ESIID</label>
+                        <input class="form-control" ng-model="ctrl.option.Search_Options.UAN" />
+                    </div>
+                    <div class="col-md-2">
+                        <label>Address Line 1</label>
+                        <input class="form-control" ng-model="ctrl.option.Search_Options.Address_Line_1" />
+                    </div>
+                    <div class="col-md-1">
+                        <label>Zip Code</label>
+                        <input class="form-control" ng-model="ctrl.option.Search_Options.Address_Zip_Code" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        <label>Additional Service</label>
+                        <select class="form-control" ng-model="ctrl.option.Search_Options.Is_Additional_Service" ng-options="ctrl.boolToStr(item) for item in [true, false]">
+                            <option value="">Any</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group text-right">
+                    <a class="btn btn-success" ng-click="ctrl.filter()">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                    <a class="btn btn-info" ng-click="ctrl.clear()">
+                        <i class="fa fa-undo"></i> Clear
+                    </a>
+                    <a class="btn btn-success" href="/export/Export_Search_Results?{{ctrl.param_serializer(ctrl.option.Search_Options)}}" target="_blank">
+                        <i class="fa fa-file-excel-o"></i> Export
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <h3>Results</h3>
+        <div ng-if="ctrl.enrollments">
+            <ul uib-pagination total-items="ctrl.enrollments.TotalSize" items-per-page="ctrl.option.PageSize" ng-model="ctrl.option.PageIndex" ng-change="ctrl.filter()"></ul>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Date</th>
+                        <th>Channel</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>UAN</th>
+                        <th>Zip</th>
+                        <th>Promo</th>
+                        <th>Product</th>
+                        <th>TDU</th>
+                        <th>Term</th>
+                        <th>Status</th>
+                        <th>Additional Service</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="enrollment in ctrl.enrollments.Items">
+                        <td>{{enrollment.Id}}</td>
+                        <td>{{enrollment.Date_Created | date}}</td>
+                        <td>{{enrollment.Channel.Name}}</td>
+                        <td>{{enrollment.Customer_Check_Record.Request.First_Name}}</td>
+                        <td>{{enrollment.Customer_Check_Record.Request.Last_Name}}</td>
+                        <td>{{enrollment.Request.UAN}}</td>
+                        <td>{{enrollment.Service_Location.Address.Zip}}</td>
+                        <td>{{enrollment.Offer.Promotion.Name}}</td>
+                        <td>{{enrollment.Offer.Plan.Product.Name}}</td>
+                        <td>{{enrollment.Offer.Plan.TDU.Name}}</td>
+                        <td>{{enrollment.Offer.Plan.Term}}</td>
+                        <td>{{enrollment.Status}}</td>
+                        <td><i class="fa" ng-class="{'fa-check text-success': enrollment.Is_Additional_Service, 'fa-remove text-danger': !enrollment.Is_Additional_Service}"></i></td>
+                        <td>
+                            <a ui-sref="root.search.details({id: enrollment.Id})" class="btn btn-info">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div ng-if="!ctrl.enrollments">
+            <p class="text-info">Supply at least one search criteria</p>
+        </div>
+    </div>
+</div>

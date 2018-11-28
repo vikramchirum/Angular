@@ -1,0 +1,27 @@
+.list-group-item:not(first-child) {
+  border-width:0 0 1px 0;
+  font-size:14px;
+  border-radius:0;
+  margin-bottom: 1px;
+
+  &.active{
+       background:#ffffff;
+    border-color: #ddd;
+  }
+
+  &.active:before {
+
+    content: "\F054";
+    font-family: FontAwesome;
+    display: inline-block;
+    margin-left: -15px;
+    margin-right: 6px;  }
+}
+
+.account-menu {
+  background-color: black;
+}
+.disableLink {
+  pointer-events: none;
+  color: lightgrey;
+}

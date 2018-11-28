@@ -1,0 +1,26 @@
+
+tr.options {
+  button {
+    outline: none !important;
+    padding: 10px 0;
+  }
+}
+
+tr.bill {
+
+  td {
+    vertical-align: middle !important;
+  }
+  button,
+  td > div {
+    padding: 10px 0;
+  }
+}
+
+.my-pagination {
+  text-align: center;
+}
+
+.my-pagination /deep/ .ngx-pagination .current {
+  text-align: center;
+}
